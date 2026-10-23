@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#163d3b">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c6254'/%3E%3Cpath d='M8 24V8h3l10 16h3V8' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
+  <title>New · Il tuo Canvas, pronto</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="vendor/xlsx.full.min.js"></script>
+  <script defer src="vendor/fflate.js"></script>
+  <script defer src="template.js"></script>
+  <script defer src="converter.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="site-header shell">
+    <a class="brand" href="index.html" aria-label="New, pagina iniziale">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M4 9h16M10 9v12M4 15h16" stroke="currentColor" stroke-width="1.6"/></svg></span>
+      <span>New<span class="brand-dot">.</span></span>
+    </a>
+    <span class="offline-badge"><span class="status-dot"></span> Funziona offline</span>
+  </header>
+
+  <main class="shell">
+    <div class="intro">
+      <div>
+        <p class="eyebrow">DA CANVAS A NEW</p>
+        <h1>Il tuo Excel.<br><span>Già sistemato.</span></h1>
+        <p class="intro-copy">Carica il Canvas originale e ottieni il file lavorato, con le formule e lo stile del modello Grieco.</p>
+      </div>
+      <div class="privacy-note"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 3 8 3v6c0 5-8 9-8 9S4 17 4 12V6l8-3Z" stroke="currentColor" stroke-width="1.5"/><path d="m8.5 12 2.3 2.3 4.7-4.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>I file restano sul tuo computer</strong><p>Tutto avviene nel browser. Nessun account, nessun invio online.</p></div></div>
+    </div>
+
+    <ol class="steps" aria-label="Passaggi">
+      <li class="active" id="stepUpload" aria-current="step"><span>1</span> Carica il Canvas</li>
+      <li id="stepReview"><span>2</span> Controlla il risultato</li>
+      <li id="stepDownload"><span>3</span> Scarica New.xlsx</li>
+    </ol>
+
+    <div class="workspace-grid">
+      <section class="upload-card card" aria-labelledby="uploadTitle">
+        <div class="section-top"><h2 id="uploadTitle">Partiamo dall’originale</h2><span class="small-label">EXCEL IN ENTRATA</span></div>
+        <div id="dropzone" class="dropzone" role="button" tabindex="0" aria-label="Scegli un file Excel originale o trascinalo qui" aria-describedby="fileHelp">
+          <span class="upload-icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M13 27H9a6 6 0 0 1-.5-12A11.5 11.5 0 0 1 31 13.5 7 7 0 0 1 31 27h-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M20 32V17m0 0-5 5m5-5 5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <strong id="dropTitle">Trascina qui il tuo Canvas</strong>
+          <p id="dropSubtitle">oppure scegli il file dal computer</p>
+          <span class="button secondary" aria-hidden="true">Scegli un file Excel <svg viewBox="0 0 20 20" fill="none" width="17" height="17"><path d="M5 15 15 5M5 5h10v10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <p class="file-help" id="fileHelp">File .xlsx o .xls · fino a 30 MB</p>
+        </div>
+        <input id="fileInput" type="file" accept=".xlsx,.xls" class="visually-hidden" tabindex="-1" aria-label="File Excel originale">
+        <div id="selectedFile" class="selected-file" hidden><span class="file-icon" aria-hidden="true">X</span><div class="selected-file-copy"><strong id="fileName"></strong><span id="fileSize"></span></div><button class="text-button" id="replaceFile" type="button">Cambia file</button></div>
+        <div id="progress" class="progress-box" hidden><span class="spinner" aria-hidden="true"></span><span id="progressText">Lettura del Canvas…</span></div>
+        <div id="errorBox" class="message error" role="alert" hidden><strong>Non riesco a elaborare questo file</strong><p id="errorText"></p></div>
+      </section>
+
+      <aside class="model-card card" aria-labelledby="modelTitle">
+        <div class="model-heading"><span class="small-label">IL RISULTATO</span><span class="xlsx-pill">.xlsx</span></div>
+        <h2 id="modelTitle">Un nuovo ordine.<br>Lo stesso stile.</h2>
+        <div class="mini-sheet" aria-hidden="true"><div class="mini-sheet-header"><span>PR.NETTO</span><span>PR. IVATO</span><span>TOTALE</span></div><div class="mini-sheet-band"></div><div class="mini-sheet-row"><span>€ 0,55</span><span>€ 0,67</span><span>€ 0,00</span></div><div class="mini-sheet-row"><span>€ 0,75</span><span>€ 0,91</span><span>€ 0,00</span></div><div class="mini-sheet-row"><span>€ 1,15</span><span>€ 1,40</span><span>€ 0,00</span></div></div>
+        <ul class="feature-list"><li><span>✓</span> Colonne e categorie riorganizzate</li><li><span>✓</span> Formule modificabili in Excel</li><li><span>✓</span> Font, colori e formati dal modello</li></ul>
+        <p class="model-footnote">Il file scaricato si chiamerà <strong>New.xlsx</strong>.</p>
+      </aside>
+    </div>
+
+    <section id="reviewSection" class="review-section" aria-labelledby="reviewTitle" hidden>
+      <div class="review-heading"><div><p class="eyebrow">CONTROLLO PRIMA DEL DOWNLOAD</p><h2 id="reviewTitle">Il Canvas è stato letto.</h2></div><span id="reviewBadge" class="review-badge">Analisi completata</span></div>
+      <div class="stats-grid"><div class="stat"><span>Articoli originali</span><strong id="sourceCount">—</strong></div><div class="stat"><span>Articoli nel risultato</span><strong id="outputCount">—</strong></div><div class="stat"><span>Categorie nel risultato</span><strong id="categoryCount">—</strong></div></div>
+      <div id="warningsBox" class="message warning" hidden><div class="warning-heading"><span aria-hidden="true">!</span><strong>Alcuni punti da controllare</strong></div><ul id="warningsList"></ul><label class="ack-label"><input id="ackWarnings" type="checkbox"><span>Ho letto le segnalazioni e voglio generare il file con queste regole.</span></label></div>
+      <div id="categoriesBox" class="category-summary" hidden><span class="small-label">CATEGORIE</span><div id="categoriesList" class="category-chips"></div></div>
+      <div class="preview-card card"><div class="section-top"><h3>Un’anteprima dei dati</h3><span id="previewCaption" class="small-label">PRIMI ARTICOLI</span></div><div class="table-scroll"><table><thead><tr><th>Codice</th><th>Descrizione</th><th class="numeric">Pezzi</th><th class="numeric">Pr. netto</th><th class="numeric">Pr. ivato</th></tr></thead><tbody id="previewBody"></tbody></table></div><p class="table-note">Anteprima dei dati: font, colori e formule completi sono nel file Excel scaricato.</p></div>
+      <div class="report-actions"><button id="reportButton" class="text-button" type="button">Scarica dettaglio trasformazioni (.csv)</button></div>
+      <p class="output-note">CxS lasciate vuote, come richiesto: potrai compilarle in Excel.</p>
+      <div class="download-panel"><div><h3 id="downloadTitle">Pronto per il prossimo passaggio.</h3><p id="downloadDescription">Genera il file e aprilo con Excel per lavorare sul tuo Canvas.</p></div><button id="downloadButton" class="button primary" type="button"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2v11m0 0-4-4m4 4 4-4M3 13v4h14v-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Genera e scarica New.xlsx</span></button></div>
+      <p id="downloadSuccess" class="download-success" role="status" hidden>✓ File generato. Se il download non parte, premi di nuovo il pulsante.</p>
+    </section>
+
+    <p id="liveStatus" class="visually-hidden" role="status" aria-live="polite"></p>
+  </main>
+  <footer class="shell site-footer"><span>New · Canvas converter</span><span>Un file alla volta. Tutto sul tuo computer.</span></footer>
+</body>
+</html>

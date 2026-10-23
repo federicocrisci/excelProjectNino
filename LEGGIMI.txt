@@ -1,0 +1,76 @@
+NEW — CONVERTITORE CANVAS OFFLINE
+
+COME SI USA
+1. Estrai tutto lo ZIP in una cartella sul computer.
+2. Apri New.html con un doppio clic (Chrome, Edge, Firefox o Safari aggiornato).
+3. Scegli o trascina l'Excel originale ricevuto dal fornitore (.xlsx o .xls).
+4. Controlla l'anteprima e le segnalazioni. Puoi scaricare anche il dettaglio CSV.
+5. Premi "Genera e scarica New.xlsx".
+
+Non serve installare programmi, avviare un server o avere Internet.
+I file vengono letti sul tuo computer: il programma non li invia online.
+Il file lavorato si apre con Excel o LibreOffice. Per aggiornare i totali,
+inserisci i cartoni da ordinare nella colonna D.
+
+COSA VIENE RIPRODOTTO
+Il modello è "New Grieco N°44.xls". Il risultato è un moderno .xlsx,
+con lo stesso foglio CANVAS, font, dimensioni, colori, bordi, allineamenti,
+formati numerici, larghezze delle colonne e altezze delle righe del campione.
+L'ordine e le categorie degli articoli riconosciuti seguono il modello.
+Gli articoli nuovi vengono conservati e segnalati: se la categoria del
+fornitore ha più destinazioni possibili, mantengono il nome origine.
+
+COLONNE DEL RISULTATO
+A: categoria, su riga dedicata.
+B: EAN come testo (preserva gli zeri iniziali).
+C: codice articolo come testo.
+D: cartoni da ordinare, vuota e da compilare.
+E: pezzi per cartone, dalla colonna E origine.
+F: descrizione, con eventuali dettagli aggiuntivi.
+G: indicazioni PROMO / NOVITA.
+H: prezzo netto dopo sconto.
+I: prezzo con IVA.
+J: Varianza, quando disponibile nel modello e dati invariati.
+K: CxS, sempre vuota come richiesto.
+L: CxB, dalla colonna F origine.
+M: totale netto riga = D * E * H; totale generale in M2.
+
+Le formule del campione sono in M. H e I sono prezzi numerici, come nel
+campione: se modifichi manualmente H, aggiorna anche I quando necessario.
+Per un nuovo caricamento i prezzi vengono ricostruiti dal file origine.
+
+CONTROLLI DA FARE
+Il campione contiene anche informazioni manuali assenti dall'originale:
+PROMO/NOVITA, Varianza e alcuni prezzi degli omaggi. Le indicazioni sono
+riprese solo con dati origine invariati e vengono segnalate per verifica.
+Non è possibile ricavare automaticamente le condizioni commerciali nuove
+o una giacenza non presente nell'originale.
+
+Il campione usa arrotondamenti non uniformi ai mezzi centesimi. Il programma
+mantiene le combinazioni prezzo/sconto/IVA già osservate nel campione;
+per combinazioni nuove usa arrotondamento commerciale a due decimali
+e mostra una segnalazione. Il prossimo Canvas servirà a verificare queste
+regole su dati nuovi e a rifinire eventuali casi particolari.
+
+Come nel campione, due righe di omaggio specifiche vengono accorpate/escluse
+solo quando coincidono con l'originale studiato. Le righe PREMI finali non
+sono articoli ordinabili e non vengono esportate. Le note non presenti nel
+modello compaiono nel dettaglio CSV, per non perderne traccia.
+
+DUE CORREZIONI RISPETTO AL CAMPIONE
+- Il totale generale comprende tutti gli articoli, incluse le ultime 295 righe
+  che la formula originale ometteva.
+- Articolo 26794: usa il prezzo origine 22,45 invece del 224,45 del campione
+  (con IVA 27,39 invece di 273,83). La correzione viene segnalata.
+
+FORMATO ATTESO
+Il Canvas originale usa le colonne A-R del file ricevuto: C codice,
+E pezzi/cartone, F CxB, G descrizione, O prezzo, P sconto (TP/SM o percentuale),
+Q IVA, R EAN. Il programma rifiuta un formato diverso o dati obbligatori
+mancanti. Massimo 30 MB, 100.000 righe, un solo foglio dati compatibile.
+
+DATI E LICENZE
+New.html contiene il modello e il catalogo ricavati dai due esempi forniti:
+condividi il programma solo con i destinatari di quei dati.
+Le librerie incluse sono SheetJS CE e fflate; le licenze sono nella cartella
+"licenze". Nessuna libreria viene scaricata durante l'utilizzo.
